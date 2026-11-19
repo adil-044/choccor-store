@@ -55,10 +55,17 @@ export function CategoryTiles() {
                 sizes="(max-width: 640px) 100vw, 33vw"
                 className="object-cover transition duration-700 group-hover:scale-[1.04]"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-cocoa/70 via-cocoa/15 to-transparent" />
+              <div
+                className="pointer-events-none absolute inset-0 bg-gradient-to-t from-cocoa/90 via-cocoa/45 to-transparent"
+                aria-hidden
+              />
               <div className="absolute inset-x-0 bottom-0 p-5 text-cream sm:p-6">
-                <p className="font-display text-3xl tracking-tight">{tile.label}</p>
-                <p className="mt-1 text-sm text-cream/80">{tile.copy}</p>
+                <p className="font-display text-3xl tracking-tight drop-shadow-sm">
+                  {tile.label}
+                </p>
+                <p className="mt-1 text-sm text-cream/95 drop-shadow-sm">
+                  {tile.copy}
+                </p>
               </div>
             </Link>
           ))}

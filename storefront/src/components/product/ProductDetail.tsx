@@ -21,12 +21,14 @@ export function ProductDetail({
   const { addProduct } = useCart();
   const [active, setActive] = useState(0);
   const [qty, setQty] = useState(1);
+  const hasIngredients = Boolean(product.ingredients?.length);
   const [openAcc, setOpenAcc] = useState<string | null>(
-    product.ingredients?.length ? "ingredients" : "storage"
+    hasIngredients ? "ingredients" : "allergens"
   );
   const shot = gallery[active] ?? gallery[0];
-  const hasIngredients = Boolean(product.ingredients?.length);
 
+  // Only ship accordions with real or intentional customer copy.
+  // No invented storage guidance — hide Storage until Courtney confirms it.
   const accordions: { id: string; title: string; body: string }[] = [];
   if (hasIngredients) {
     accordions.push({
@@ -39,11 +41,6 @@ export function ProductDetail({
     id: "allergens",
     title: "Allergens",
     body: "Please contact us for ingredient and allergen information.",
-  });
-  accordions.push({
-    id: "storage",
-    title: "Storage",
-    body: "Please contact us for storage guidance for handmade chocolates.",
   });
 
   return (
