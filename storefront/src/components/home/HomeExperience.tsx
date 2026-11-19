@@ -1,17 +1,20 @@
 "use client";
 
-import { BuildBox } from "@/components/home/BuildBox";
-import { FeaturedHero } from "@/components/home/FeaturedHero";
-import { Juices } from "@/components/home/Juices";
-import { ShopGrid } from "@/components/home/ShopGrid";
-import { Story } from "@/components/home/Story";
+import { Bestsellers } from "@/components/home/Bestsellers";
+import { BrandHero } from "@/components/home/BrandHero";
+import { ByobBand } from "@/components/home/ByobBand";
+import { CategoryTiles } from "@/components/home/CategoryTiles";
+import { FeaturedSplit } from "@/components/home/FeaturedSplit";
+import { JuicesBand } from "@/components/home/JuicesBand";
+import { NewsletterBand } from "@/components/home/NewsletterBand";
+import { ReviewsBand } from "@/components/home/ReviewsBand";
+import { StoryTeaser } from "@/components/home/StoryTeaser";
 import type { StorefrontProduct } from "@/lib/medusa";
 
 export function HomeExperience({
   featured,
   juices,
   tray,
-  byob,
   source,
 }: {
   featured: StorefrontProduct[];
@@ -20,18 +23,17 @@ export function HomeExperience({
   byob: StorefrontProduct[];
   source: "medusa" | "fallback";
 }) {
-  // Featured buy panel: prefer tray (party assortment) with gallery of real pieces
-  const heroProduct =
-    tray[0] ??
-    featured.find((p) => p.handle === "pistachio-almond-bar") ??
-    featured[0];
-
-  const gallery = buildGallery(heroProduct, featured, tray);
-
-  // Shop grid: named chocolates/bars/bites only (no juices, tray, BYOB examples)
-  const shopProducts = featured.filter(
-    (p) => !p.exampleOnly && p.category !== "juice" && p.category !== "tray"
+  const trayProduct = tray[0];
+  const bestsellers = featured.filter(
+    (p) =>
+      !p.exampleOnly &&
+      p.category !== "juice" &&
+      p.category !== "tray"
   );
+
+  const gallery = trayProduct
+    ? buildGallery(trayProduct, featured)
+    : [];
 
   return (
     <>
@@ -42,52 +44,36 @@ export function HomeExperience({
           </p>
         </div>
       )}
-      {heroProduct && (
-        <FeaturedHero product={heroProduct} gallery={gallery} />
-      )}
-      <ShopGrid products={shopProducts} />
-      <BuildBox examples={byob} />
-      <Juices products={juices} />
-      <Story />
+      <BrandHero />
+      <CategoryTiles />
+      <Bestsellers products={bestsellers} />
+      {trayProduct && <FeaturedSplit product={trayProduct} gallery={gallery} />}
+      <ByobBand />
+      <JuicesBand products={juices} />
+      <StoryTeaser />
+      <ReviewsBand />
+      <NewsletterBand />
     </>
   );
 }
 
 function buildGallery(
   hero: StorefrontProduct,
-  featured: StorefrontProduct[],
-  tray: StorefrontProduct[]
+  featured: StorefrontProduct[]
 ) {
   const items: { src: string; alt: string }[] = [
     { src: hero.image, alt: hero.imageAlt },
   ];
-
-  // Add real companion shots — tray pieces / signature chocolates
-  const companions = [
-    ...tray.filter((p) => p.id !== hero.id),
-    ...featured.filter(
-      (p) =>
-        p.id !== hero.id &&
-        ["baileys-dream", "mango-madness", "mint-chocolate", "pistachio-chocolate"].includes(
-          p.handle
-        )
-    ),
-  ];
-
+  const companions = featured.filter((p) =>
+    ["baileys-dream", "mango-madness", "mint-chocolate", "pistachio-chocolate"].includes(
+      p.handle
+    )
+  );
   for (const p of companions) {
     if (items.length >= 4) break;
     if (!items.some((i) => i.src === p.image)) {
       items.push({ src: p.image, alt: p.imageAlt });
     }
   }
-
-  // Pad with more featured if needed
-  for (const p of featured) {
-    if (items.length >= 4) break;
-    if (!items.some((i) => i.src === p.image)) {
-      items.push({ src: p.image, alt: p.imageAlt });
-    }
-  }
-
   return items;
 }

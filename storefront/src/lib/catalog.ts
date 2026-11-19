@@ -83,7 +83,7 @@ export const FAQ_ITEMS = [
   {
     question: "Where can I see prices?",
     answer:
-      "Retail pricing is being finalized. Products currently show Price TBC — wholesale order-form prices are not retail and are not displayed here.",
+      "Retail pricing is being finalized. Products currently show Price TBC until Courtney confirms.",
   },
 ] as const;
 
@@ -289,4 +289,78 @@ export function productsBySection(
 
 export function featuredProducts() {
   return PRODUCTS.filter((p) => p.featured && !p.exampleOnly);
+}
+
+/** Sellable catalog entries (excludes BYOB photo examples). */
+export function sellableProducts() {
+  return PRODUCTS.filter((p) => !p.exampleOnly);
+}
+
+/** Bars / pieces eligible for a Build a Box of 9. */
+export function boxEligibleProducts() {
+  return PRODUCTS.filter(
+    (p) =>
+      !p.exampleOnly &&
+      (p.category === "chocolate" ||
+        p.category === "bar" ||
+        p.category === "bites")
+  );
+}
+
+export type ShopFilter = "all" | "chocolates" | "juices" | "trays";
+
+export function filterShopProducts<T extends ChoccorProduct>(
+  products: T[],
+  filter: ShopFilter
+): T[] {
+  switch (filter) {
+    case "chocolates":
+      return products.filter(
+        (p) =>
+          p.category === "chocolate" ||
+          p.category === "bar" ||
+          p.category === "bites"
+      );
+    case "juices":
+      return products.filter((p) => p.category === "juice");
+    case "trays":
+      return products.filter(
+        (p) => p.category === "tray" || p.category === "custom"
+      );
+    default:
+      return products.filter((p) => !p.exampleOnly);
+  }
+}
+
+export function collectionLabel(product: ChoccorProduct): string {
+  switch (product.category) {
+    case "juice":
+      return "Natural juices";
+    case "tray":
+      return "Trays & gifting";
+    case "custom":
+      return "Build your own";
+    case "bites":
+      return "Bites";
+    case "bar":
+      return "Bars";
+    default:
+      return "Handmade chocolates";
+  }
+}
+
+export function getProductByHandle(handle: string) {
+  return PRODUCTS.find((p) => p.handle === handle);
+}
+
+export function relatedProducts(handle: string, limit = 4) {
+  const current = getProductByHandle(handle);
+  if (!current) return featuredProducts().slice(0, limit);
+  const same = sellableProducts().filter(
+    (p) => p.handle !== handle && p.category === current.category
+  );
+  const rest = sellableProducts().filter(
+    (p) => p.handle !== handle && p.category !== current.category
+  );
+  return [...same, ...rest].slice(0, limit);
 }

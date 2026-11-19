@@ -11,15 +11,26 @@ import "@fontsource/outfit/600.css";
 import { SmoothScroll } from "@/components/motion/SmoothScroll";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
+import { AppProviders } from "@/components/providers/AppProviders";
+import { absoluteUrl, SITE } from "@/lib/site";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(absoluteUrl("/")),
   title: {
-    default: "Choccor Gourmet Chocolates",
-    template: "%s · Choccor",
+    default: SITE.fullName,
+    template: `%s · ${SITE.name}`,
   },
   description:
-    "MORE THAN JUST CHOCOLATE — handmade chocolates and natural juices by Courtney Foreman.",
+    "More than just chocolate — handmade chocolates and natural juices by Courtney Foreman.",
+  openGraph: {
+    type: "website",
+    siteName: SITE.fullName,
+    locale: "en_CA",
+  },
+  icons: {
+    icon: [{ url: "/icon.png", type: "image/png" }],
+  },
 };
 
 export default function RootLayout({
@@ -39,13 +50,15 @@ export default function RootLayout({
             '"IBM Plex Mono", ui-monospace, monospace',
         }}
       >
-        <SmoothScroll>
-          <div className="paper-grain min-h-screen bg-cream">
-            <SiteHeader />
-            <main>{children}</main>
-            <SiteFooter />
-          </div>
-        </SmoothScroll>
+        <AppProviders>
+          <SmoothScroll>
+            <div className="paper-grain min-h-screen bg-cream">
+              <SiteHeader />
+              <main id="main">{children}</main>
+              <SiteFooter />
+            </div>
+          </SmoothScroll>
+        </AppProviders>
       </body>
     </html>
   );

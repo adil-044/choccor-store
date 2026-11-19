@@ -104,15 +104,39 @@ body {
   }
 
   .btn-primary {
-    @apply inline-flex w-full items-center justify-center gap-2 rounded-md bg-accent px-6 py-3.5 text-center text-[12px] font-medium uppercase tracking-[0.22em] text-cream transition hover:bg-cocoa;
+    @apply inline-flex items-center justify-center gap-2 rounded-md bg-accent px-6 py-3.5 text-center text-[12px] font-medium uppercase tracking-[0.22em] text-cream transition hover:bg-cocoa focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-md border border-accent/80 bg-transparent px-6 py-3.5 text-center text-[12px] font-medium uppercase tracking-[0.22em] text-accent transition hover:bg-accent hover:text-cream focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-md px-4 py-2.5 text-[12px] font-medium uppercase tracking-[0.18em] text-charcoal/80 transition hover:text-charcoal focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold;
   }
 
   .option-card {
-    @apply cursor-pointer rounded-lg border border-[var(--line)] bg-cream-soft/60 px-4 py-3.5 text-left transition hover:border-cocoa/30;
+    @apply cursor-pointer rounded-lg border border-[var(--line)] bg-cream-soft/60 px-4 py-3.5 text-left transition hover:border-cocoa/30 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold;
   }
 
   .option-card[data-active="true"] {
     @apply border-accent bg-cream shadow-[inset_0_0_0_1px_var(--accent)];
+  }
+
+  .section-pad {
+    @apply py-16 sm:py-20 lg:py-24;
+  }
+
+  .eyebrow {
+    @apply label-caps text-gold;
+  }
+
+  .focus-ring {
+    @apply focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold;
+  }
+
+  .field-input {
+    @apply w-full rounded-md border border-[var(--line)] bg-cream-soft px-4 py-3 text-sm text-charcoal placeholder:text-muted/70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold;
   }
 }
 

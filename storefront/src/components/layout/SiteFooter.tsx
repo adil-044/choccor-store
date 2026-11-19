@@ -1,41 +1,65 @@
 import Link from "next/link";
 import { BRAND } from "@/lib/catalog";
+import { NAV_FOOTER, NAV_POLICIES, SITE } from "@/lib/site";
 
 export function SiteFooter() {
   return (
     <footer className="border-t border-[var(--line)] bg-cream-deep/50">
-      <div className="container-choc grid gap-10 py-14 sm:grid-cols-3">
-        <div>
-          <p className="font-display text-3xl tracking-[0.04em] text-charcoal">Choccor</p>
+      <div className="container-choc grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="sm:col-span-2 lg:col-span-1">
+          <p className="font-display text-3xl tracking-[0.04em] text-charcoal">
+            {SITE.name}
+          </p>
           <p className="mt-2 max-w-xs text-sm leading-relaxed text-muted">
             {BRAND.tagline}. Handmade chocolates and natural juices by {BRAND.owner}.
           </p>
+          <a
+            href={SITE.facebookUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-4 inline-flex text-sm text-charcoal/80 underline-offset-4 transition hover:text-charcoal hover:underline focus-ring rounded-sm"
+          >
+            Facebook
+          </a>
         </div>
+
         <div>
           <p className="label-caps">Explore</p>
           <ul className="mt-4 space-y-2 text-sm text-charcoal/80">
+            {NAV_FOOTER.map((item) => (
+              <li key={item.href}>
+                <Link
+                  href={item.href}
+                  className="transition hover:text-charcoal focus-ring rounded-sm"
+                >
+                  {item.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div>
+          <p className="label-caps">Policies</p>
+          <ul className="mt-4 space-y-2 text-sm text-charcoal/80">
+            {NAV_POLICIES.map((item) => (
+              <li key={item.href}>
+                <Link
+                  href={item.href}
+                  className="transition hover:text-charcoal focus-ring rounded-sm"
+                >
+                  {item.label}
+                </Link>
+              </li>
+            ))}
             <li>
-              <Link href="/#chocolates" className="transition hover:text-charcoal">
-                Chocolates
-              </Link>
-            </li>
-            <li>
-              <Link href="/#build" className="transition hover:text-charcoal">
-                Build a box
-              </Link>
-            </li>
-            <li>
-              <Link href="/#juices" className="transition hover:text-charcoal">
-                Natural juices
-              </Link>
-            </li>
-            <li>
-              <Link href="/#story" className="transition hover:text-charcoal">
-                Our story
+              <Link href="/cart/" className="transition hover:text-charcoal focus-ring rounded-sm">
+                Cart
               </Link>
             </li>
           </ul>
         </div>
+
         <div>
           <p className="label-caps">Studio</p>
           <ul className="mt-4 space-y-2 text-sm text-charcoal/80">
@@ -44,7 +68,9 @@ export function SiteFooter() {
             <li className="text-muted">
               Phone: <span className="price-tbc !text-muted">TBC</span>
             </li>
-            <li className="text-muted">Email unconfirmed — omitted until published.</li>
+            <li className="text-muted">
+              Email: <span className="text-muted">TBC</span>
+            </li>
           </ul>
         </div>
       </div>

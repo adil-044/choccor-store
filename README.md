@@ -2,7 +2,7 @@
 
 Premium ecommerce foundation for **Choccor** (owner **Courtney Foreman**, he/him) — handmade chocolates and natural juices. Agency: **Uptisement**.
 
-Amboras-style editorial commerce homepage (cream linen paper, photography-led buy panel) plus architecture for later pages: **Medusa v2** backend with a Choccor seed script, and a **Next.js** App Router storefront with subtle GSAP motion and a **seeded catalog fallback** (no backend required for the static homepage).
+Amboras-style editorial brand homepage (cream linen paper, Cormorant/Outfit/IBM Plex Mono) plus a full static storefront: shop, PDPs, Build a Box, juices, story, contact, FAQ, client-side cart, and policy stubs. **Medusa v2** backend remains optional via seeded catalog fallback.
 
 **Live (GitHub Pages):** https://adil-044.github.io/choccor-store/
 
