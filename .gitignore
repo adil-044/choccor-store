@@ -32,3 +32,6 @@ agent-tools/
 tmp-*/
 choccor-store-source.zip
 *.zip
+
+# Internal client notes / source assets — never publish
+uploads/

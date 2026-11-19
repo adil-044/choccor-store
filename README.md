@@ -21,7 +21,6 @@ Amboras-style editorial commerce homepage (cream linen paper, photography-led bu
 backend/       Medusa v2 API + admin + seed script
 storefront/    Next.js storefront (static-exportable)
 docs/          Open questions & design references
-uploads/       Source mapping notes + working asset references
 .github/       Pages deploy workflow
 ```
 
