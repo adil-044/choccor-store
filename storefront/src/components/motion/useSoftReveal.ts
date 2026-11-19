@@ -19,6 +19,8 @@ export function useSoftReveal<T extends HTMLElement>(stagger = 0.08) {
     }
     const items = el.querySelectorAll("[data-reveal]");
     const ctx = gsap.context(() => {
+      // immediateRender: false keeps content visible until the tween runs,
+      // so below-fold wells are never left as empty cream rectangles on load.
       gsap.fromTo(
         items,
         { opacity: 0, y: 22 },
@@ -31,7 +33,7 @@ export function useSoftReveal<T extends HTMLElement>(stagger = 0.08) {
           immediateRender: false,
           scrollTrigger: {
             trigger: el,
-            start: "top 85%",
+            start: "top 88%",
             once: true,
           },
         }

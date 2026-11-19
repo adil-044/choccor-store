@@ -8,7 +8,7 @@ export const metadata = pageMetadata({
   description:
     "More than just chocolate — handmade gourmet chocolates and natural juices by Courtney Foreman.",
   path: "/",
-  image: "/hero-products.webp",
+  image: "/products/chocolate-tray.webp",
 });
 
 export default async function HomePage() {

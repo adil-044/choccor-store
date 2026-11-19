@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { absoluteUrl, SITE } from "./site";
 import { withBasePath } from "./paths";
 
-const DEFAULT_OG = "/hero-products.webp";
+const DEFAULT_OG = "/products/chocolate-tray.webp";
 
 export function pageMetadata({
   title,

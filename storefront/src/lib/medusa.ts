@@ -8,8 +8,11 @@ import {
 import { withBasePath } from "./paths";
 
 function withAssetPaths<T extends ChoccorProduct>(product: T): T {
+  // Never ship internal openQuestions notes to the browser payload.
+  const { openQuestions: _omit, ...rest } = product;
+  void _omit;
   return {
-    ...product,
+    ...(rest as T),
     image: withBasePath(product.image),
   };
 }
