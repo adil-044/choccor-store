@@ -1,0 +1,34 @@
+# Dependencies
+node_modules/
+
+# Next.js
+.next/
+out/
+storefront/out/
+
+# Medusa / build artifacts
+.medusa/
+dist/
+build/
+coverage/
+.turbo/
+*.tsbuildinfo
+
+# Env & secrets (keep templates)
+.env
+.env.*
+!.env.template
+!.env.example
+*.pem
+*.key
+
+# Logs & OS
+*.log
+.DS_Store
+
+# Local tooling / archives
+agent-tools/
+.playwright/
+tmp-*/
+choccor-store-source.zip
+*.zip

@@ -1,0 +1,14 @@
+{
+  "name": "choccor",
+  "private": true,
+  "description": "Choccor Gourmet Chocolates — Medusa v2 + Next.js storefront monorepo",
+  "scripts": {
+    "dev:storefront": "npm run dev --prefix storefront",
+    "build:storefront": "npm run build --prefix storefront",
+    "dev:backend": "npm run dev --prefix backend",
+    "seed": "npm run seed --prefix backend"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
