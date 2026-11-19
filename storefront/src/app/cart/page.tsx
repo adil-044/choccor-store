@@ -3,7 +3,7 @@ import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
   title: "Cart",
-  description: "Your Choccor cart — prices marked TBC until retail pricing is confirmed.",
+  description: "Your Choccor cart.",
   path: "/cart/",
   noIndex: true,
 });

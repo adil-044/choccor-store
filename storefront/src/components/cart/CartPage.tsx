@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useCart } from "@/lib/cart";
+import { formatCartSubtotal, formatProductPrice } from "@/lib/pricing";
 import { withBasePath } from "@/lib/paths";
 
 export function CartPage() {
@@ -19,8 +20,7 @@ export function CartPage() {
         <p className="eyebrow">Bag</p>
         <h1 className="display-lg mt-3">Cart</h1>
         <p className="mt-3 text-sm text-muted">
-          Client-side cart stored in your browser. Subtotal stays TBC while retail
-          prices are unconfirmed.
+          Review your selection before checkout.
         </p>
 
         {!ready ? (
@@ -59,7 +59,9 @@ export function CartPage() {
                         {line.boxItems.map((b) => b.title).join(" · ")}
                       </p>
                     )}
-                    <p className="price-tbc mt-3">Price TBC</p>
+                    <p className="mt-3 text-sm tracking-wide text-muted">
+                      {formatProductPrice()}
+                    </p>
                     <div className="mt-4 flex flex-wrap items-center gap-4">
                       <input
                         type="number"
@@ -91,9 +93,9 @@ export function CartPage() {
                 <p className="mt-3 text-sm text-muted">
                   {itemCount} item{itemCount === 1 ? "" : "s"}
                 </p>
-                <div className="mt-6 flex items-center justify-between">
+                <div className="mt-6 flex items-center justify-between gap-4">
                   <span className="text-sm text-muted">Subtotal</span>
-                  <span className="price-tbc">TBC</span>
+                  <span className="text-sm text-muted">{formatCartSubtotal()}</span>
                 </div>
                 <Link href="/checkout/" className="btn-primary mt-6 w-full">
                   Checkout

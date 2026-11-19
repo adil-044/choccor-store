@@ -120,7 +120,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
         id: uid(),
         kind: "box",
         handle: "build-a-box",
-        title: "Build Your Own Box (9 bars)",
+        title: "Build a box of 9",
         image: picks[0]?.image || "/products/build-your-own-bar-milk.webp",
         quantity: 1,
         boxItems: picks,

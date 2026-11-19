@@ -64,8 +64,9 @@ function buildGallery(
   const items: { src: string; alt: string }[] = [
     { src: hero.image, alt: hero.imageAlt },
   ];
+  // Avoid repeating pistachio photography used elsewhere on the homepage.
   const companions = featured.filter((p) =>
-    ["baileys-dream", "mango-madness", "mint-chocolate", "pistachio-chocolate"].includes(
+    ["baileys-dream", "mango-madness", "mint-chocolate", "coconut-and-almond"].includes(
       p.handle
     )
   );

@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useSoftReveal } from "@/components/motion/useSoftReveal";
+import { formatProductPrice } from "@/lib/pricing";
 import type { StorefrontProduct } from "@/lib/medusa";
 
 export function JuicesBand({ products }: { products: StorefrontProduct[] }) {
@@ -20,7 +21,6 @@ export function JuicesBand({ products }: { products: StorefrontProduct[] }) {
           <p className="eyebrow">Natural juices</p>
           <h2 className="display-lg mt-3">Fresh from the lineup</h2>
           <p className="mt-4 max-w-md text-sm leading-relaxed text-muted">
-            Choccor&apos;s natural juice names confirmed for this storefront:
             Berry Rush, Avocado Boost, and Peanut Punch.
           </p>
           <ul className="mt-8 space-y-1">
@@ -33,7 +33,9 @@ export function JuicesBand({ products }: { products: StorefrontProduct[] }) {
                   <span className="font-display text-2xl text-charcoal transition group-hover:text-cocoa">
                     {p.title}
                   </span>
-                  <span className="price-tbc text-xs">{p.priceLabel}</span>
+                  <span className="text-xs tracking-wide text-muted">
+                    {formatProductPrice()}
+                  </span>
                 </Link>
               </li>
             ))}

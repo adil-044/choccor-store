@@ -57,8 +57,8 @@ export function ShopExperience({ products }: { products: StorefrontProduct[] }) 
         <p className="eyebrow">Collection</p>
         <h1 className="display-lg mt-3">Shop</h1>
         <p className="mt-4 max-w-xl text-sm leading-relaxed text-muted">
-          Real Choccor products only. Retail pricing shows as Price TBC until
-          confirmed.
+          Handmade chocolates, trays, and natural juices from Courtney&apos;s
+          kitchen.
         </p>
 
         <div className="mt-10 flex flex-col gap-4 border-y border-[var(--line)] py-4 sm:flex-row sm:items-center sm:justify-between">

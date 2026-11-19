@@ -8,7 +8,7 @@ export const metadata = pageMetadata({
   description:
     "Meet Courtney Foreman — owner and founder of Choccor Gourmet Chocolates.",
   path: "/our-story/",
-  image: "/showcase/pistachio-poster.jpg",
+  image: "/showcase/byob-poster.jpg",
 });
 
 export default function OurStoryPage() {
@@ -18,7 +18,7 @@ export default function OurStoryPage() {
         <p className="eyebrow">About</p>
         <h1 className="display-lg mt-3">Our story</h1>
         <p className="mt-3 text-sm text-muted">
-          Owner &amp; founder — {BRAND.owner} (he/him)
+          Owner &amp; founder — {BRAND.owner}
         </p>
 
         <div className="mt-12 grid gap-10 lg:grid-cols-12 lg:gap-14">
@@ -36,22 +36,15 @@ export default function OurStoryPage() {
             <p className="font-display text-2xl leading-relaxed text-charcoal sm:text-3xl">
               {BRAND.about}
             </p>
-            <p className="mt-8 text-sm leading-relaxed text-muted">
-              Agency partner for this storefront: {BRAND.agency}. Tagline:{" "}
-              {BRAND.tagline}.
-            </p>
-            <p className="mt-4 text-sm leading-relaxed text-muted">
-              Values statements beyond Courtney&apos;s own words are not invented
-              here — only confirmed copy appears on this page.
-            </p>
+            <p className="mt-8 label-caps text-gold">{BRAND.tagline}</p>
           </div>
         </div>
 
         <div className="mt-20 grid gap-6 md:grid-cols-2">
           <div className="relative aspect-[5/4] overflow-hidden bg-cream-deep/40">
             <Image
-              src={withBasePath("/hero-byob.webp")}
-              alt="Build Your Own Chocolate Bar display"
+              src={withBasePath("/products/mango-madness.webp")}
+              alt="Mango Madness chocolate"
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover"
@@ -70,7 +63,7 @@ export default function OurStoryPage() {
 
         <div className="mt-20">
           <p className="eyebrow">From customers</p>
-          <h2 className="display-lg mt-3">Real reviews</h2>
+          <h2 className="display-lg mt-3">Kind words</h2>
           <div className="mt-8 grid gap-6 md:grid-cols-2">
             {REVIEWS.map((review) => (
               <figure

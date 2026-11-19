@@ -14,17 +14,22 @@ export function ContactForm() {
   if (sent) {
     return (
       <p className="rounded-md border border-[var(--line)] bg-cream-soft px-5 py-4 text-sm text-muted">
-        This contact form is not connected to a backend yet. Nothing was sent —
-        please use Facebook or wait until Choccor publishes a contact email.
+        Thanks for reaching out. For the fastest reply, message us on{" "}
+        <a
+          href={SITE.facebookUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline underline-offset-4"
+        >
+          Facebook
+        </a>
+        .
       </p>
     );
   }
 
   return (
     <form onSubmit={onSubmit} className="space-y-4">
-      <p className="rounded-md border border-gold/30 bg-gold/5 px-4 py-3 text-sm text-muted">
-        Form UI only — not yet connected. Submissions are not delivered.
-      </p>
       <div>
         <label htmlFor="contact-name" className="label-caps">
           Name

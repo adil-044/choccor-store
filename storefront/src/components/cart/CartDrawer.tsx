@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect } from "react";
 import { useCart } from "@/lib/cart";
+import { formatCartSubtotal, formatProductPrice } from "@/lib/pricing";
 import { withBasePath } from "@/lib/paths";
 
 export function CartDrawer() {
@@ -101,7 +102,9 @@ export function CartDrawer() {
                         {line.boxItems.map((b) => b.title).join(" · ")}
                       </p>
                     )}
-                    <p className="price-tbc mt-2 text-xs">Price TBC</p>
+                    <p className="mt-2 text-xs tracking-wide text-muted">
+                      {formatProductPrice()}
+                    </p>
                     <div className="mt-3 flex items-center gap-3">
                       <label className="sr-only" htmlFor={`qty-${line.id}`}>
                         Quantity
@@ -135,11 +138,8 @@ export function CartDrawer() {
         <div className="border-t border-[var(--line)] px-5 py-5">
           <div className="flex items-center justify-between">
             <span className="text-sm text-muted">Subtotal</span>
-            <span className="price-tbc">TBC</span>
+            <span className="text-sm text-muted">{formatCartSubtotal()}</span>
           </div>
-          <p className="mt-2 text-[11px] leading-relaxed text-muted">
-            Retail pricing is unconfirmed — totals stay TBC until Choccor publishes prices.
-          </p>
           <Link
             href="/cart/"
             onClick={closeDrawer}

@@ -6,6 +6,7 @@ import { useState } from "react";
 import { ProductTile } from "@/components/ui/ProductTile";
 import { collectionLabel } from "@/lib/catalog";
 import { useCart } from "@/lib/cart";
+import { formatProductPrice } from "@/lib/pricing";
 import type { StorefrontProduct } from "@/lib/medusa";
 
 export function ProductDetail({
@@ -20,8 +21,30 @@ export function ProductDetail({
   const { addProduct } = useCart();
   const [active, setActive] = useState(0);
   const [qty, setQty] = useState(1);
-  const [openAcc, setOpenAcc] = useState<string | null>("ingredients");
+  const [openAcc, setOpenAcc] = useState<string | null>(
+    product.ingredients?.length ? "ingredients" : "storage"
+  );
   const shot = gallery[active] ?? gallery[0];
+  const hasIngredients = Boolean(product.ingredients?.length);
+
+  const accordions: { id: string; title: string; body: string }[] = [];
+  if (hasIngredients) {
+    accordions.push({
+      id: "ingredients",
+      title: "Ingredients",
+      body: product.ingredients!.join(", "),
+    });
+  }
+  accordions.push({
+    id: "allergens",
+    title: "Allergens",
+    body: "Please contact us for ingredient and allergen information.",
+  });
+  accordions.push({
+    id: "storage",
+    title: "Storage",
+    body: "Please contact us for storage guidance for handmade chocolates.",
+  });
 
   return (
     <div className="border-b border-[var(--line)]">
@@ -70,7 +93,13 @@ export function ProductDetail({
                     }`}
                     aria-label={`View image ${i + 1}`}
                   >
-                    <Image src={item.src} alt="" fill sizes="96px" className="object-cover" />
+                    <Image
+                      src={item.src}
+                      alt=""
+                      fill
+                      sizes="96px"
+                      className="object-cover"
+                    />
                   </button>
                 ))}
               </div>
@@ -86,11 +115,11 @@ export function ProductDetail({
               {product.subtitle ?? product.description}
             </p>
 
-            {product.ingredients && product.ingredients.length > 0 && (
+            {hasIngredients && (
               <div className="mt-8 hairline pt-5">
                 <p className="spec-line mb-3">Ingredients</p>
                 <ul className="space-y-2">
-                  {product.ingredients.map((ing) => (
+                  {product.ingredients!.map((ing) => (
                     <li
                       key={ing}
                       className="spec-line flex justify-between gap-4 text-charcoal/75"
@@ -104,15 +133,10 @@ export function ProductDetail({
               </div>
             )}
 
-            {product.openQuestions && product.openQuestions.length > 0 && (
-              <p className="mt-6 text-sm text-muted">
-                Note: {product.openQuestions[0]}
-              </p>
-            )}
-
             <div className="mt-8 hairline pt-6">
-              <p className="font-display text-3xl text-charcoal">Price TBC</p>
-              <p className="price-tbc mt-1">Retail pricing</p>
+              <p className="font-display text-3xl text-charcoal">
+                {formatProductPrice()}
+              </p>
             </div>
 
             <div className="mt-8 flex items-center gap-4">
@@ -125,7 +149,9 @@ export function ProductDetail({
                 min={1}
                 max={99}
                 value={qty}
-                onChange={(e) => setQty(Math.max(1, Number(e.target.value) || 1))}
+                onChange={(e) =>
+                  setQty(Math.max(1, Number(e.target.value) || 1))
+                }
                 className="field-input w-20 text-center"
               />
             </div>
@@ -149,20 +175,7 @@ export function ProductDetail({
             </button>
 
             <div className="mt-10 space-y-0 border-t border-[var(--line)]">
-              {[
-                {
-                  id: "ingredients",
-                  title: "Ingredients & allergens",
-                  body: product.ingredients?.length
-                    ? `Listed ingredients: ${product.ingredients.join(", ")}. Allergen statements — confirm with Choccor before publishing claims.`
-                    : "Ingredients for this product — confirm with Choccor. Allergen statements — confirm with Choccor.",
-                },
-                {
-                  id: "storage",
-                  title: "Storage",
-                  body: "Storage guidance — confirm with Choccor. Keep handmade chocolates cool and dry until confirmed instructions are published.",
-                },
-              ].map((acc) => {
+              {accordions.map((acc) => {
                 const open = openAcc === acc.id;
                 return (
                   <div key={acc.id} className="border-b border-[var(--line)]">

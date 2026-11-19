@@ -8,7 +8,7 @@ import { withBasePath } from "@/lib/paths";
 
 export function StoryTeaser() {
   const ref = useSoftReveal<HTMLElement>();
-  // First-person bio — keep Courtney's words; do not paraphrase pronouns.
+  // First-person bio — Courtney's words; excerpt only.
   const excerpt = BRAND.about.slice(0, 280).trimEnd() + "…";
 
   return (
@@ -18,10 +18,13 @@ export function StoryTeaser() {
       className="section-pad border-b border-[var(--line)] bg-linen/50"
     >
       <div className="container-choc grid items-center gap-10 lg:grid-cols-12 lg:gap-14">
-        <div className="relative aspect-[4/5] overflow-hidden bg-cream-deep/40 lg:col-span-5" data-reveal>
+        <div
+          className="relative aspect-[4/5] overflow-hidden bg-cream-deep/40 lg:col-span-5"
+          data-reveal
+        >
           <Image
-            src={withBasePath("/showcase/pistachio-poster.jpg")}
-            alt="Choccor pistachio chocolate photography"
+            src={withBasePath("/showcase/byob-poster.jpg")}
+            alt="Choccor Build Your Own Bar photography"
             fill
             sizes="(max-width: 1024px) 100vw, 40vw"
             className="object-cover"
@@ -31,7 +34,7 @@ export function StoryTeaser() {
           <p className="eyebrow">Our story</p>
           <h2 className="display-lg mt-3">Meet Courtney</h2>
           <p className="mt-2 text-sm text-muted">
-            Owner &amp; founder — {BRAND.owner} (he/him)
+            Owner &amp; founder — {BRAND.owner}
           </p>
           <blockquote className="mt-8 font-display text-xl leading-relaxed text-charcoal sm:text-2xl">
             “{excerpt}”

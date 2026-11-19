@@ -5,15 +5,19 @@ import Link from "next/link";
 import { useCart } from "@/lib/cart";
 import type { StorefrontProduct } from "@/lib/medusa";
 import { collectionLabel } from "@/lib/catalog";
+import { formatProductPrice } from "@/lib/pricing";
 
 export function ProductTile({
   product,
   priority = false,
   showQuickAdd = true,
+  /** Hide subtitle so equal-height rows stay aligned (bestsellers). */
+  compactMeta = false,
 }: {
   product: StorefrontProduct;
   priority?: boolean;
   showQuickAdd?: boolean;
+  compactMeta?: boolean;
 }) {
   const { addProduct } = useCart();
 
@@ -21,7 +25,7 @@ export function ProductTile({
     <article data-reveal className="group flex h-full flex-col">
       <Link
         href={`/products/${product.handle}/`}
-        className="relative aspect-square overflow-hidden bg-cream-deep/40 focus-ring"
+        className="relative aspect-square w-full overflow-hidden bg-cream-deep/40 focus-ring"
       >
         <Image
           src={product.image}
@@ -32,19 +36,25 @@ export function ProductTile({
           priority={priority}
         />
       </Link>
-      <div className="mt-4 flex flex-1 flex-col">
+      <div className="mt-4 flex min-h-0 flex-1 flex-col">
         <p className="label-caps text-[10px]">{collectionLabel(product)}</p>
         <Link
           href={`/products/${product.handle}/`}
-          className="mt-1 font-display text-xl leading-tight text-charcoal transition hover:text-cocoa focus-ring rounded-sm sm:text-2xl"
+          className={`mt-1 font-display leading-tight text-charcoal transition hover:text-cocoa focus-ring rounded-sm sm:text-2xl ${
+            compactMeta
+              ? "line-clamp-2 min-h-[2.6em] text-xl sm:min-h-[2.5em]"
+              : "text-xl"
+          }`}
         >
           {product.title}
         </Link>
-        {product.subtitle && (
+        {!compactMeta && product.subtitle && (
           <p className="mt-1 text-sm italic text-muted">{product.subtitle}</p>
         )}
         <div className="mt-auto flex items-end justify-between gap-3 pt-4">
-          <p className="price-tbc">{product.priceLabel}</p>
+          <p className="text-sm tracking-wide text-muted">
+            {formatProductPrice()}
+          </p>
           {showQuickAdd && !product.exampleOnly && (
             <button
               type="button"

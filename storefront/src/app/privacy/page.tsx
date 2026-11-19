@@ -3,7 +3,7 @@ import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
   title: "Privacy",
-  description: "Draft privacy policy — to confirm with Choccor.",
+  description: "Privacy information for Choccor Gourmet Chocolates.",
   path: "/privacy/",
 });
 
@@ -11,7 +11,7 @@ export default function PrivacyPage() {
   return (
     <PolicyStub
       title="Privacy"
-      summary="A full privacy policy (data collected, newsletter handling, cookies) has not been confirmed. Draft only — to confirm with Choccor."
+      summary="We're preparing a full privacy policy covering how Choccor handles your information. It will appear here soon."
     />
   );
 }

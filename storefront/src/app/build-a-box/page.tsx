@@ -6,7 +6,7 @@ import { pageMetadata } from "@/lib/seo";
 export const metadata = pageMetadata({
   title: "Build a Box",
   description:
-    "Build a Choccor box of 9 handmade chocolate bars. Retail pricing marked Price TBC.",
+    "Build a Choccor box of 9 handmade chocolates.",
   path: "/build-a-box/",
   image: "/reference/byob-banner-full.webp",
 });

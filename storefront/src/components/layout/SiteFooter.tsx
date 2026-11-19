@@ -11,7 +11,8 @@ export function SiteFooter() {
             {SITE.name}
           </p>
           <p className="mt-2 max-w-xs text-sm leading-relaxed text-muted">
-            {BRAND.tagline}. Handmade chocolates and natural juices by {BRAND.owner}.
+            {BRAND.tagline}. Handmade chocolates and natural juices by{" "}
+            {BRAND.owner}.
           </p>
           <a
             href={SITE.facebookUrl}
@@ -53,7 +54,10 @@ export function SiteFooter() {
               </li>
             ))}
             <li>
-              <Link href="/cart/" className="transition hover:text-charcoal focus-ring rounded-sm">
+              <Link
+                href="/cart/"
+                className="transition hover:text-charcoal focus-ring rounded-sm"
+              >
                 Cart
               </Link>
             </li>
@@ -64,12 +68,15 @@ export function SiteFooter() {
           <p className="label-caps">Studio</p>
           <ul className="mt-4 space-y-2 text-sm text-charcoal/80">
             <li>Owner: {BRAND.owner}</li>
-            <li>Agency partner: {BRAND.agency}</li>
-            <li className="text-muted">
-              Phone: <span className="price-tbc !text-muted">TBC</span>
-            </li>
-            <li className="text-muted">
-              Email: <span className="text-muted">TBC</span>
+            <li>
+              <a
+                href={SITE.facebookUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline-offset-4 hover:underline focus-ring rounded-sm"
+              >
+                Message us on Facebook
+              </a>
             </li>
           </ul>
         </div>
@@ -79,7 +86,13 @@ export function SiteFooter() {
           <p>
             © {new Date().getFullYear()} {BRAND.fullName}. All rights reserved.
           </p>
-          <p className="italic">One sweet moment at a time.</p>
+          <p className="sm:text-right">
+            <span className="italic">One sweet moment at a time.</span>
+            <span className="mx-2 text-muted/40" aria-hidden>
+              ·
+            </span>
+            <span className="tracking-wide">Site by {BRAND.agency}</span>
+          </p>
         </div>
       </div>
     </footer>

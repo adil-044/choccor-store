@@ -11,11 +11,7 @@ export function ReviewsBand() {
       <div className="container-choc">
         <div className="mb-10 max-w-xl" data-reveal>
           <p className="eyebrow">From customers</p>
-          <h2 className="display-lg mt-3">Words we can stand behind</h2>
-          <p className="mt-3 text-sm text-muted">
-            Quoted exactly. No star ratings or review counts — those have not been
-            confirmed for publication.
-          </p>
+          <h2 className="display-lg mt-3">Kind words</h2>
         </div>
         <div className="grid gap-6 md:grid-cols-2">
           {REVIEWS.map((review) => (

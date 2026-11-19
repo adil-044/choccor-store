@@ -26,7 +26,8 @@ export type ChoccorProduct = {
   imageAlt: string;
   /** Always true until Courtney confirms retail pricing. */
   pricePlaceholder: true;
-  priceLabel: "Price TBC";
+  /** Customer-facing label while prices are unconfirmed. */
+  priceLabel: "Price coming soon";
   featured?: boolean;
   homepageSection?: "featured" | "juices" | "tray" | "byob";
   ingredients?: string[];
@@ -68,7 +69,7 @@ export const FAQ_ITEMS = [
   {
     question: "Do you offer Build Your Own Bar?",
     answer:
-      "Yes — Build Your Own Bar lets you choose your chocolate style. Boxes are built with 9 bars in each. Retail details are being confirmed.",
+      "Yes — Build Your Own Bar lets you choose your chocolate style. Build a box of 9 from Courtney's handmade chocolates.",
   },
   {
     question: "What juices do you offer?",
@@ -78,12 +79,12 @@ export const FAQ_ITEMS = [
   {
     question: "Can I order a chocolate tray for parties or gifting?",
     answer:
-      "Yes — the chocolate tray is designed for parties and gifting. Reach out through the newsletter signup or contact options once published.",
+      "Yes — the chocolate tray is designed for parties and gifting. Reach out through Contact or Facebook.",
   },
   {
     question: "Where can I see prices?",
     answer:
-      "Retail pricing is being finalized. Products currently show Price TBC until Courtney confirms.",
+      "Retail pricing will appear on the site soon. Until then, products show Price coming soon.",
   },
 ] as const;
 
@@ -99,7 +100,7 @@ export const PRODUCTS: ChoccorProduct[] = [
     image: "/products/baileys-dream.webp",
     imageAlt: "Baileys Dream chocolate on cream studio background",
     pricePlaceholder: true,
-    priceLabel: "Price TBC",
+    priceLabel: "Price coming soon",
     featured: true,
     homepageSection: "featured",
     ingredients: ["Choco", "Baileys", "Butter", "Vanilla"],
@@ -115,7 +116,7 @@ export const PRODUCTS: ChoccorProduct[] = [
     image: "/products/mango-madness.webp",
     imageAlt: "Mango Madness chocolate on cream studio background",
     pricePlaceholder: true,
-    priceLabel: "Price TBC",
+    priceLabel: "Price coming soon",
     featured: true,
     homepageSection: "featured",
     ingredients: ["Mango Puree", "Choco", "Butter", "Vanilla"],
@@ -131,7 +132,7 @@ export const PRODUCTS: ChoccorProduct[] = [
     image: "/products/mint-chocolate.webp",
     imageAlt: "Mint chocolate piece on cream studio background",
     pricePlaceholder: true,
-    priceLabel: "Price TBC",
+    priceLabel: "Price coming soon",
     featured: true,
     homepageSection: "featured",
     openQuestions: [
@@ -147,7 +148,7 @@ export const PRODUCTS: ChoccorProduct[] = [
     image: "/products/pistachio-almond-bar.webp",
     imageAlt: "Pistachio Almond Bar on cream studio background",
     pricePlaceholder: true,
-    priceLabel: "Price TBC",
+    priceLabel: "Price coming soon",
     featured: true,
     homepageSection: "featured",
   },
@@ -160,7 +161,7 @@ export const PRODUCTS: ChoccorProduct[] = [
     image: "/products/pistachio-chocolate.webp",
     imageAlt: "Pistachio Chocolate on cream studio background",
     pricePlaceholder: true,
-    priceLabel: "Price TBC",
+    priceLabel: "Price coming soon",
     featured: true,
     homepageSection: "featured",
   },
@@ -173,7 +174,7 @@ export const PRODUCTS: ChoccorProduct[] = [
     image: "/products/coconut-and-almond.webp",
     imageAlt: "Coconut and Almond chocolate on cream studio background",
     pricePlaceholder: true,
-    priceLabel: "Price TBC",
+    priceLabel: "Price coming soon",
     featured: true,
     homepageSection: "featured",
   },
@@ -186,7 +187,7 @@ export const PRODUCTS: ChoccorProduct[] = [
     image: "/products/protein-bites.webp",
     imageAlt: "Choccor Protein Bites on cream studio background",
     pricePlaceholder: true,
-    priceLabel: "Price TBC",
+    priceLabel: "Price coming soon",
     featured: true,
     homepageSection: "featured",
   },
@@ -201,7 +202,7 @@ export const PRODUCTS: ChoccorProduct[] = [
     image: "/products/chocolate-tray.webp",
     imageAlt: "Assorted Choccor chocolate party tray",
     pricePlaceholder: true,
-    priceLabel: "Price TBC",
+    priceLabel: "Price coming soon",
     homepageSection: "tray",
   },
   {
@@ -214,7 +215,7 @@ export const PRODUCTS: ChoccorProduct[] = [
     image: "/products/juice-berry-rush.webp",
     imageAlt: "Berry Rush natural juice bottle mockup",
     pricePlaceholder: true,
-    priceLabel: "Price TBC",
+    priceLabel: "Price coming soon",
     homepageSection: "juices",
   },
   {
@@ -227,7 +228,7 @@ export const PRODUCTS: ChoccorProduct[] = [
     image: "/products/juice-avocado-boost.webp",
     imageAlt: "Avocado Boost natural juice bottle mockup",
     pricePlaceholder: true,
-    priceLabel: "Price TBC",
+    priceLabel: "Price coming soon",
     homepageSection: "juices",
   },
   {
@@ -240,7 +241,7 @@ export const PRODUCTS: ChoccorProduct[] = [
     image: "/products/juice-peanut-punch.webp",
     imageAlt: "Peanut Punch natural juice bottle mockup",
     pricePlaceholder: true,
-    priceLabel: "Price TBC",
+    priceLabel: "Price coming soon",
     homepageSection: "juices",
   },
   {
@@ -249,12 +250,12 @@ export const PRODUCTS: ChoccorProduct[] = [
     title: "Build Your Own Bar — Milk",
     subtitle: "Build Your Own Bar — Milk",
     description:
-      "Build Your Own Bar in milk chocolate. Box sets are 9 bars in each.",
+      "Build Your Own Bar in milk chocolate. Build a box of 9.",
     category: "custom",
     image: "/products/build-your-own-bar-milk.webp",
     imageAlt: "Build Your Own Bar — Milk chocolate",
     pricePlaceholder: true,
-    priceLabel: "Price TBC",
+    priceLabel: "Price coming soon",
     homepageSection: "byob",
     exampleOnly: true,
     openQuestions: [
@@ -267,12 +268,12 @@ export const PRODUCTS: ChoccorProduct[] = [
     title: "Build Your Own Bar — Half & Half",
     subtitle: "Build Your Own Bar — Half & Half",
     description:
-      "Build Your Own Bar half & half. Box sets are 9 bars in each.",
+      "Build Your Own Bar half & half. Build a box of 9.",
     category: "custom",
     image: "/products/build-your-own-bar-half-and-half.webp",
     imageAlt: "Build Your Own Bar — Half & Half chocolate",
     pricePlaceholder: true,
-    priceLabel: "Price TBC",
+    priceLabel: "Price coming soon",
     homepageSection: "byob",
     exampleOnly: true,
     openQuestions: [

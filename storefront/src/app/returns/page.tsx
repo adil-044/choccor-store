@@ -3,7 +3,7 @@ import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
   title: "Returns",
-  description: "Draft returns policy — to confirm with Choccor.",
+  description: "Returns information for Choccor Gourmet Chocolates.",
   path: "/returns/",
 });
 
@@ -11,7 +11,7 @@ export default function ReturnsPage() {
   return (
     <PolicyStub
       title="Returns"
-      summary="Returns, exchanges, and refunds have not been confirmed for publication. Draft only — to confirm with Choccor."
+      summary="We're finalizing our returns policy. Guidance for exchanges and refunds will appear here soon."
     />
   );
 }

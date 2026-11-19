@@ -3,7 +3,7 @@ import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
   title: "Checkout",
-  description: "Checkout coming soon — Medusa checkout will be wired later.",
+  description: "Checkout coming soon for Choccor Gourmet Chocolates.",
   path: "/checkout/",
   noIndex: true,
 });
@@ -15,9 +15,8 @@ export default function CheckoutPage() {
         <p className="eyebrow">Checkout</p>
         <h1 className="display-lg mt-3">Coming soon</h1>
         <p className="mt-5 text-base leading-relaxed text-muted">
-          Checkout is not connected yet. The cart already works in your browser;
-          Medusa checkout (payments, tax, shipping) will be wired in a later
-          milestone.
+          Secure checkout is on the way. Your cart is saved in this browser —
+          please check back soon, or contact us to place an order.
         </p>
         <div className="mt-8 flex flex-col gap-3 sm:flex-row">
           <Link href="/cart/" className="btn-secondary">

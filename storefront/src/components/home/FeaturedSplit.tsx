@@ -5,8 +5,13 @@ import Link from "next/link";
 import { useState } from "react";
 import { useSoftReveal } from "@/components/motion/useSoftReveal";
 import { useCart } from "@/lib/cart";
+import { formatProductPrice } from "@/lib/pricing";
 import type { StorefrontProduct } from "@/lib/medusa";
 
+/**
+ * Tray feature panel — qty + add to cart only (matches tray PDP).
+ * Build-a-box is a separate path; don't offer options the PDP doesn't.
+ */
 export function FeaturedSplit({
   product,
   gallery,
@@ -17,7 +22,7 @@ export function FeaturedSplit({
   const ref = useSoftReveal<HTMLElement>();
   const { addProduct } = useCart();
   const [active, setActive] = useState(0);
-  const [option, setOption] = useState<"single" | "box">("single");
+  const [qty, setQty] = useState(1);
   const shot = gallery[active] ?? gallery[0];
   const ingredients = product.ingredients?.length ? product.ingredients : null;
 
@@ -43,23 +48,31 @@ export function FeaturedSplit({
                 />
               )}
             </div>
-            <div className="mt-3 flex gap-2 overflow-x-auto pb-1">
-              {gallery.map((item, i) => (
-                <button
-                  key={item.src}
-                  type="button"
-                  onClick={() => setActive(i)}
-                  className={`relative h-20 w-20 shrink-0 overflow-hidden border transition focus-ring sm:h-24 sm:w-24 ${
-                    i === active
-                      ? "border-accent"
-                      : "border-transparent opacity-80 hover:opacity-100"
-                  }`}
-                  aria-label={`View image ${i + 1}`}
-                >
-                  <Image src={item.src} alt="" fill sizes="96px" className="object-cover" />
-                </button>
-              ))}
-            </div>
+            {gallery.length > 1 && (
+              <div className="mt-3 flex gap-2 overflow-x-auto pb-1">
+                {gallery.map((item, i) => (
+                  <button
+                    key={item.src}
+                    type="button"
+                    onClick={() => setActive(i)}
+                    className={`relative h-20 w-20 shrink-0 overflow-hidden border transition focus-ring sm:h-24 sm:w-24 ${
+                      i === active
+                        ? "border-accent"
+                        : "border-transparent opacity-80 hover:opacity-100"
+                    }`}
+                    aria-label={`View image ${i + 1}`}
+                  >
+                    <Image
+                      src={item.src}
+                      alt=""
+                      fill
+                      sizes="96px"
+                      className="object-cover"
+                    />
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
 
           <div className="flex flex-col lg:col-span-5 lg:pt-2" data-reveal>
@@ -90,92 +103,45 @@ export function FeaturedSplit({
             )}
 
             <div className="mt-8 hairline pt-6">
-              <p className="font-display text-3xl text-charcoal">Price TBC</p>
-              <p className="price-tbc mt-1">Retail pricing</p>
+              <p className="font-display text-3xl text-charcoal">
+                {formatProductPrice()}
+              </p>
             </div>
 
-            <div className="mt-8 space-y-3">
-              <p className="label-caps">How would you like it?</p>
-              <button
-                type="button"
-                data-active={option === "single"}
-                className="option-card w-full"
-                onClick={() => setOption("single")}
-              >
-                <div className="flex items-start gap-3">
-                  <span
-                    className={`mt-1 flex h-4 w-4 shrink-0 items-center justify-center rounded-full border ${
-                      option === "single" ? "border-accent bg-accent" : "border-[var(--line)]"
-                    }`}
-                  >
-                    {option === "single" && (
-                      <span className="h-1.5 w-1.5 rounded-full bg-cream" />
-                    )}
-                  </span>
-                  <div>
-                    <p className="text-sm font-medium text-charcoal">Single tray</p>
-                    <p className="mt-0.5 text-sm text-muted">One assortment — Price TBC</p>
-                  </div>
-                </div>
-              </button>
-              <button
-                type="button"
-                data-active={option === "box"}
-                className="option-card w-full"
-                onClick={() => setOption("box")}
-              >
-                <div className="flex items-start gap-3">
-                  <span
-                    className={`mt-1 flex h-4 w-4 shrink-0 items-center justify-center rounded-full border ${
-                      option === "box" ? "border-accent bg-accent" : "border-[var(--line)]"
-                    }`}
-                  >
-                    {option === "box" && (
-                      <span className="h-1.5 w-1.5 rounded-full bg-cream" />
-                    )}
-                  </span>
-                  <div className="flex-1">
-                    <div className="flex items-center justify-between gap-2">
-                      <p className="text-sm font-medium text-charcoal">
-                        Build a box of 9
-                      </p>
-                      <span className="rounded-sm bg-gold/15 px-2 py-0.5 text-[10px] uppercase tracking-[0.14em] text-gold">
-                        Signature
-                      </span>
-                    </div>
-                    <p className="mt-0.5 text-sm text-muted">
-                      Nine bars in each box — Price TBC
-                    </p>
-                  </div>
-                </div>
-              </button>
-            </div>
-
-            {option === "single" ? (
-              <button
-                type="button"
-                className="btn-primary mt-6 w-full"
-                onClick={() =>
-                  addProduct({
-                    handle: product.handle,
-                    title: product.title,
-                    image: product.image,
-                  })
+            <div className="mt-8 flex items-center gap-4">
+              <label className="label-caps" htmlFor="tray-qty">
+                Qty
+              </label>
+              <input
+                id="tray-qty"
+                type="number"
+                min={1}
+                max={99}
+                value={qty}
+                onChange={(e) =>
+                  setQty(Math.max(1, Number(e.target.value) || 1))
                 }
-              >
-                Add to cart
-                <span className="text-gold" aria-hidden>
-                  ❦
-                </span>
-              </button>
-            ) : (
-              <Link href="/build-a-box/" className="btn-primary mt-6 w-full">
-                Start building a box
-                <span className="text-gold" aria-hidden>
-                  ❦
-                </span>
-              </Link>
-            )}
+                className="field-input w-20 text-center"
+              />
+            </div>
+
+            <button
+              type="button"
+              className="btn-primary mt-6 w-full"
+              onClick={() =>
+                addProduct({
+                  handle: product.handle,
+                  title: product.title,
+                  image: product.image,
+                  quantity: qty,
+                })
+              }
+            >
+              Add to cart
+              <span className="text-gold" aria-hidden>
+                ❦
+              </span>
+            </button>
 
             <Link
               href={`/products/${product.handle}/`}

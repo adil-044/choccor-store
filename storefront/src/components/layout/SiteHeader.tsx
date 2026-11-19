@@ -7,7 +7,7 @@ import { NAV_PRIMARY, SITE } from "@/lib/site";
 
 const TICKER = [
   "Handmade gourmet chocolates",
-  "Build a box — 9 bars in each",
+  "Build a box of 9",
   "More than just chocolate",
 ];
 

@@ -1,11 +1,13 @@
 # Open Questions — Choccor Storefront
 
 Track every placeholder and unconfirmed detail. Do **not** invent answers.
+Internal notes belong here — not on customer-facing pages.
 
 ## Pricing
 
 - [ ] Confirm **retail** prices for every product. Wholesale order-form prices must never be shown on the storefront.
-- [ ] All products currently display **Price TBC** / `price_placeholder: true` in seed + catalog data.
+- [ ] Storefront currently shows **Price coming soon** via `storefront/src/lib/pricing.ts` (`PRICES_CONFIRMED` / `NEXT_PUBLIC_PRICES_CONFIRMED`). Flip the flag when prices are ready.
+- [ ] Cart subtotal shows **Calculated at checkout** until prices are confirmed.
 - [ ] Confirm currency (seed assumes CAD as a working default for Medusa store config only — not shown as a price).
 
 ## Product names & photos
@@ -14,8 +16,10 @@ Track every placeholder and unconfirmed detail. Do **not** invent answers.
 - [ ] Confirm product names for the two Build Your Own Bar photos:
   - `build-your-own-bar-milk` — currently shown as **Build Your Own Bar** example only
   - `build-your-own-bar-half-and-half` — currently shown as **Build Your Own Bar** example only
-- [x] Real cream-studio mockup PNGs wired into `storefront/public/products/` as WebP (re-attached Nov 19). CDN/stock/illustrated stand-ins removed.
+- [x] Real cream-studio mockup PNGs wired into `storefront/public/products/` as WebP.
 - [ ] Confirm full wholesale order-form product list (15 SKUs) and which appear on the retail homepage.
+- [ ] `/public/hero-products.webp` is a pre-composited mock with translucent overlays — **do not use as a clean hero background**. Homepage hero uses `/products/chocolate-tray.webp` in a split layout instead.
+- [ ] BYOB banner assets (`hero-byob.webp`, `reference/byob-banner-full.webp`) contain typography — always `object-contain` (or use product photos) so lettering is never cropped.
 
 ## Ingredients
 
@@ -27,33 +31,34 @@ Confirmed from tray labels only:
 Still needed:
 
 - [ ] Ingredients for remaining chocolates, bars, bites, tray assortment, and juices
-- [ ] Allergen statements
+- [ ] Allergen statements — PDPs currently say “Please contact us for ingredient and allergen information” when not documented
 - [ ] Dietary claims (vegan / gluten-free / etc.) — do not publish until confirmed
+- [ ] Storage guidance — contact CTA until confirmed
 
 ## Contact & business details
 
-- [ ] Confirm **one** public phone number (two conflicting numbers exist across materials; none are shown on the site)
-- [ ] Confirm public email / contact form destination
+- [ ] Confirm **one** public phone number (two conflicting numbers exist across materials; **hidden** on the live site until confirmed)
+- [ ] Confirm public email / contact form destination (**hidden** until confirmed; form is UI-only)
 - [ ] Confirm business address / pickup / shipping regions
-- [ ] Confirm social links
+- [x] Facebook link published: https://www.facebook.com/share/g/1AGZq8sVwy/
 
 ## Copy & merchandising
 
-- [ ] **Approve 3D showcase headline** — agency draft currently reads “Crafted one bar at a time” (not from Courtney’s materials). Confirm, rewrite, or replace.
-- [ ] Confirm Build a Box rules (9 bars each) and any BYOB customization options/pricing
+- [ ] Confirm Build a Box rules (box of 9) and any BYOB customization options/pricing
 - [ ] Confirm juice product descriptions beyond the names Berry Rush, Avocado Boost, Peanut Punch
 - [ ] Confirm whether additional juices (e.g. Natural Juice Refresher from existing packaging) should appear
 - [ ] Confirm which customer reviews beyond Kathleen & Rose may be published
-- [ ] Newsletter provider / backend send (UI only for now)
+- [ ] Newsletter provider / backend send (UI only for now — customer copy stays soft)
+- [ ] Shipping / returns / privacy full policy language
 
 ## Technical / ops
 
 - [ ] Postgres + Redis for local Medusa (or hosted equivalents) — storefront works without them via seeded fallback
 - [ ] Publishable API key for storefront ↔ Medusa
-- [ ] Payment provider, tax, shipping — out of scope for homepage milestone
-- [ ] Domain / public deployment — explicitly deferred
+- [ ] Payment provider, tax, shipping — Medusa checkout stubbed at `/checkout/`
+- [ ] Domain / public deployment
 
 ## Agency
 
-- Agency partner for this build: **Uptisement**
+- Agency partner for this build: **Uptisement** (footer credit only: “Site by Uptisement”)
 - Owner: **Courtney Foreman** (he/him) — confirmed by Adil; do not use she/her in copy, docs, or comments

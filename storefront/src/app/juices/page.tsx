@@ -21,8 +21,7 @@ export default function JuicesPage() {
         <p className="eyebrow">Collection</p>
         <h1 className="display-lg mt-3">Natural juices</h1>
         <p className="mt-4 max-w-xl text-sm leading-relaxed text-muted">
-          Confirmed juice names for this storefront. Descriptions beyond the
-          product names are still being confirmed with Choccor.
+          Berry Rush, Avocado Boost, and Peanut Punch.
         </p>
 
         <div className="mt-12 grid gap-8 sm:grid-cols-3">
@@ -46,7 +45,9 @@ export default function JuicesPage() {
                 </Link>
               </h2>
               <p className="mt-1 text-sm italic text-muted">{product.subtitle}</p>
-              <p className="price-tbc mt-3">{product.priceLabel}</p>
+              <p className="mt-3 text-sm tracking-wide text-muted">
+                {product.priceLabel}
+              </p>
             </article>
           ))}
         </div>

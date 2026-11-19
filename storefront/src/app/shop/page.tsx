@@ -5,7 +5,7 @@ import { pageMetadata } from "@/lib/seo";
 export const metadata = pageMetadata({
   title: "Shop",
   description:
-    "Shop Choccor handmade chocolates, trays, and natural juices. Retail prices marked Price TBC.",
+    "Shop Choccor handmade chocolates, trays, and natural juices.",
   path: "/shop/",
   image: "/products/baileys-dream.webp",
 });

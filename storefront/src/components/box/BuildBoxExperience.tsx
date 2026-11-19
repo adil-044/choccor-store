@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import { useCart, type BoxPick } from "@/lib/cart";
+import { formatProductPrice } from "@/lib/pricing";
 import { BOX_SIZE } from "@/lib/site";
 import type { StorefrontProduct } from "@/lib/medusa";
 
@@ -56,8 +57,8 @@ export function BuildBoxExperience({
         <p className="eyebrow">Signature</p>
         <h1 className="display-lg mt-3">Build a box</h1>
         <p className="mt-4 max-w-xl text-sm leading-relaxed text-muted">
-          Choose {BOX_SIZE} bars for your box. Retail price remains TBC. Bar
-          options below are confirmed Choccor chocolates from the catalog.
+          Choose {BOX_SIZE} pieces for your box from Courtney&apos;s handmade
+          chocolates.
         </p>
 
         <div className="mt-10 grid gap-10 lg:grid-cols-12">
@@ -82,7 +83,9 @@ export function BuildBoxExperience({
                     <p className="mt-3 font-display text-lg leading-tight text-charcoal">
                       {product.title}
                     </p>
-                    <p className="price-tbc mt-1 text-xs">{product.priceLabel}</p>
+                    <p className="mt-1 text-xs tracking-wide text-muted">
+                      {formatProductPrice()}
+                    </p>
                     <div className="mt-3 flex items-center gap-2">
                       <button
                         type="button"
@@ -118,12 +121,12 @@ export function BuildBoxExperience({
               <p className="mt-2 text-sm text-muted">
                 {full
                   ? "Box complete — ready to add."
-                  : `${remaining} more bar${remaining === 1 ? "" : "s"} to go.`}
+                  : `${remaining} more piece${remaining === 1 ? "" : "s"} to go.`}
               </p>
 
               <ul className="mt-6 max-h-64 space-y-2 overflow-y-auto">
                 {picks.length === 0 && (
-                  <li className="text-sm text-muted">No bars selected yet.</li>
+                  <li className="text-sm text-muted">No pieces selected yet.</li>
                 )}
                 {Array.from(counts.entries()).map(([handle, count]) => {
                   const product = products.find((p) => p.handle === handle);
@@ -151,7 +154,7 @@ export function BuildBoxExperience({
               <div className="mt-6 hairline pt-5">
                 <div className="flex justify-between text-sm">
                   <span className="text-muted">Box price</span>
-                  <span className="price-tbc">TBC</span>
+                  <span className="text-muted">{formatProductPrice()}</span>
                 </div>
               </div>
 

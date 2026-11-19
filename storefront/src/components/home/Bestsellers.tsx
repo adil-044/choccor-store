@@ -20,10 +20,6 @@ export function Bestsellers({ products }: { products: StorefrontProduct[] }) {
           <div data-reveal>
             <p className="eyebrow">Bestsellers</p>
             <h2 className="display-lg mt-3">Featured from the kitchen</h2>
-            <p className="mt-3 max-w-md text-sm leading-relaxed text-muted">
-              Real Choccor products with retail pricing marked Price TBC until
-              Courtney confirms.
-            </p>
           </div>
           <Link
             href="/shop/"
@@ -33,13 +29,14 @@ export function Bestsellers({ products }: { products: StorefrontProduct[] }) {
             View all
           </Link>
         </div>
-        <div className="grid grid-cols-2 gap-x-4 gap-y-10 md:grid-cols-4 md:gap-x-6">
+        <div className="grid grid-cols-2 items-stretch gap-x-4 gap-y-10 md:grid-cols-4 md:gap-x-6">
           {list.map((product, i) => (
             <ProductTile
               key={product.id}
               product={product}
               priority={i < 2}
               showQuickAdd
+              compactMeta
             />
           ))}
         </div>

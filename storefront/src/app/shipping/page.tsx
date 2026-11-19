@@ -3,7 +3,7 @@ import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
   title: "Shipping",
-  description: "Draft shipping policy — to confirm with Choccor.",
+  description: "Shipping information for Choccor Gourmet Chocolates.",
   path: "/shipping/",
 });
 
@@ -11,7 +11,7 @@ export default function ShippingPage() {
   return (
     <PolicyStub
       title="Shipping"
-      summary="Shipping regions, carriers, timelines, and rates have not been confirmed for publication. Draft only — to confirm with Choccor."
+      summary="We're finalizing shipping details for Choccor. Regions, timelines, and rates will appear here soon."
     />
   );
 }
