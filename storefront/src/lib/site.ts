@@ -29,6 +29,7 @@ export const NAV_FOOTER = [
   { href: "/shop/", label: "Shop chocolates" },
   { href: "/build-a-box/", label: "Build a box" },
   { href: "/juices/", label: "Natural juices" },
+  { href: "/apparel/", label: "Apparel" },
   { href: "/our-story/", label: "Our story" },
   { href: "/faq/", label: "FAQ" },
   { href: "/contact/", label: "Contact" },

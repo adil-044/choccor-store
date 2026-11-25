@@ -14,6 +14,10 @@ function withAssetPaths<T extends ChoccorProduct>(product: T): T {
   return {
     ...(rest as T),
     image: withBasePath(product.image),
+    gallery: product.gallery?.map((shot) => ({
+      ...shot,
+      src: withBasePath(shot.src),
+    })),
   };
 }
 
