@@ -1,6 +1,5 @@
 "use client";
 
-import { ApparelBand } from "@/components/home/ApparelBand";
 import { Bestsellers } from "@/components/home/Bestsellers";
 import { BrandHero } from "@/components/home/BrandHero";
 import { ByobBand } from "@/components/home/ByobBand";
@@ -53,7 +52,6 @@ export function HomeExperience({
       <JuicesBand products={juices} />
       <StoryTeaser />
       <ReviewsBand />
-      <ApparelBand />
       <NewsletterBand />
     </>
   );
