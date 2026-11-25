@@ -24,6 +24,8 @@ export type ChoccorProduct = {
   category: ProductCategory;
   image: string;
   imageAlt: string;
+  /** Extra PDP gallery shots after the primary image. */
+  gallery?: { src: string; alt: string }[];
   /** Always true until Courtney confirms retail pricing. */
   pricePlaceholder: true;
   /** Customer-facing label while prices are unconfirmed. */
@@ -172,7 +174,18 @@ export const PRODUCTS: ChoccorProduct[] = [
     description: "Coconut and almond in Courtney's handmade chocolate.",
     category: "chocolate",
     image: "/products/coconut-and-almond.webp",
-    imageAlt: "Coconut and Almond chocolate on cream studio background",
+    imageAlt:
+      "Coconut and Almond chocolate truffles on a plate, one cut open",
+    gallery: [
+      {
+        src: "/products/coconut-and-almond-2.webp",
+        alt: "Coconut and Almond truffles — alternate angle",
+      },
+      {
+        src: "/products/coconut-and-almond-studio.webp",
+        alt: "Coconut and Almond chocolate on cream studio background",
+      },
+    ],
     pricePlaceholder: true,
     priceLabel: "Price coming soon",
     featured: true,
@@ -182,10 +195,23 @@ export const PRODUCTS: ChoccorProduct[] = [
     id: "prod_protein_bites",
     handle: "protein-bites",
     title: "Choccor Protein Bites",
-    description: "Handmade chocolate protein bites — a sweet, satisfying bite.",
+    subtitle: "Energy bites",
+    description:
+      "Oat energy bites topped with milk chocolate and a white drizzle — handmade Protein / Energy Bites from Choccor.",
     category: "bites",
-    image: "/products/protein-bites.webp",
-    imageAlt: "Choccor Protein Bites on cream studio background",
+    image: "/products/energy-bites.webp",
+    imageAlt:
+      "Choccor Protein Energy Bites — oat bars with milk chocolate and white drizzle",
+    gallery: [
+      {
+        src: "/products/energy-bites-2.webp",
+        alt: "Choccor Protein Energy Bites — alternate angle",
+      },
+      {
+        src: "/products/protein-bites.webp",
+        alt: "Choccor Protein Bites on cream studio background",
+      },
+    ],
     pricePlaceholder: true,
     priceLabel: "Price coming soon",
     featured: true,

@@ -50,6 +50,12 @@ function buildGallery(
   related: StorefrontProduct[]
 ) {
   const items = [{ src: product.image, alt: product.imageAlt }];
+  for (const shot of product.gallery ?? []) {
+    if (items.length >= 4) break;
+    if (!items.some((i) => i.src === shot.src)) {
+      items.push({ src: shot.src, alt: shot.alt });
+    }
+  }
   for (const p of related) {
     if (items.length >= 4) break;
     if (!items.some((i) => i.src === p.image)) {

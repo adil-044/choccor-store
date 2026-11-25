@@ -114,9 +114,10 @@ const PRODUCTS: SeedProduct[] = [
   {
     title: "Choccor Protein Bites",
     handle: "protein-bites",
-    description: "Handmade chocolate protein bites — a sweet, satisfying bite.",
+    description:
+      "Oat energy bites topped with milk chocolate and a white drizzle — handmade Protein / Energy Bites from Choccor.",
     category: "Bites",
-    thumbnail: "/products/protein-bites.webp",
+    thumbnail: "/products/energy-bites.webp",
     metadata: {
       price_placeholder: true,
       price_label: "Price TBC",
